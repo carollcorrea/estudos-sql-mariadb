@@ -1,0 +1,84 @@
+NORMALIZAÇÃO DE DADOS
+
+Olhando para o nosso banco de dados, construímos o campo de endereço de uma forma em que o usuário pode inserir as informações livremente. Porém, se tivermos qie implantar uma nova feature em que nosso sistema vai sugerir destinos aos usuários de acordo com sua cidade natal, teremos um problema!
+
+Como vamos buscar todos os usuários da cidade X?
+
+Para esses tipos de dados inconsistentes ou com anomalias existe o processo de normalização de dados. É um processo no qual se organiza e estrutura um banco de dados relacional de forma a eliminar redundâncias e anomalias, garantindo a consistência e integridade dos dados.
+
+FORMAS NORMAIS
+
+1FN: Atomicidade de dados
+
+A 1NF estabele que cada valor em uma tabela deve ser atômico, ou seja, indivisível. Nenhum campo deve conter múltiplos valores ou listas. no seu caso, o campo "endereço" contém multiplos valors, como rua, número, cidade e estado.Para atingir a 1FN, precisamos dividir o campo 'endereço' em colunas separadas.
+
+Nós vamos adicionar as novas colunas de rua,nº, cidade e estado. Depois vamos fazer uma peneração e seguir com a migração desses dados. 
+
+Em nosso caso, os dados foram inseridos cuidadosamente no mesmo formato, então conseguimos fazer a migração dos dados, mas isso nem sempre é possível. Depois, vamos realizar a exclusão da tabela de endereço.
+
+1) Adicinar novas colunas...
+
+ALTER TABLE usuarios
+ADD rua VARCHAR (100),
+ADD numero VARCHER (10),
+ADD cidade VARCHAR (50),
+ADD estados VARCHAR (20);
+
+2) migrando as informações...
+
+*No SQl temos o substring que serve para fazer a divisão de um texto com base nos indices dele, que iniciam no 0 e vão até tamanho -1.
+
+UPDATE usuarios
+SET rua = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',1),',',-1),
+    numero = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',2),',',-1),
+    cidade = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',3),',',-1),
+    estado = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco,',',-1);
+
+
+2FN
+
+Quando estamos falando de formar normais, elas são sempre incrementais Então para que uma tabela esteja normalizada de acordo coma segunda forma normal, é preciso que ela esteja normalizada segundo a primeira forma normal.
+
+A 2FN estabelece que uma tabela deve estar na 1FN.
+Todos os atributos não chave devem depender totalmente da chave primária.
+
+Dica: se sua tabela tem uma chave primária simples, não existe a possibilidade de temos dependência parcial e portanto ela já se encontra na 2FN.
+
+3FN
+
+Também é auto incrmental, então para estar na 3FN uma tabela deve estar na 2FN
+Nenhuma coluna não-chave depender de outra coluna não-chave.
+
+Nosso exemplo: Relação Estado -> Cidade
+
+Poderíamos ter por ex, uma regra que carregaria a cidade de acordo com o estado. Nesse caso, a coluna cidade teria uma dependencia da coluna estado. Se isso fosse necessário, não estaríamos na 3FN. Podemos ter tabelas desnormalizadas, dentro de um bom senso, sem prejudicar a performance e consistencia dos nossos dados. O que seria diferente no caso de um sistema de emissão de notas fiscais.
+
+RESUMINHO:
+
+~> A 1FN garante que cada valor seja atômico e que os registros sejam únicos e identificáveis.
+
+~> A 2FN garante que os atributos não chave dependam totalmente da chave primária, evitando dependências parciais.
+
+~> A 3FN elimina as dependências transitivas entre os atributos não-chave, garantindo que cada atributo não-chave dependa apenas da chave primária, não havendo dependências indiretas entre eles.
+
+PESQUISAR OUTRAS 3 FORMAS NORMAIS****
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

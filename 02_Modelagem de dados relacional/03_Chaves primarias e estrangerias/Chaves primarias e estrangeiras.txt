@@ -1,0 +1,106 @@
+Chaves primarias e estrangeiras
+
+******CHAVES PRIMARIAS*****
+
+é um atributo ou um conjunto de atributos que identifica de forma exclusiva cada registro de nossa tabel. É responsável por garantir a integridade dos nossos dados, pois impede a duplicação de registros e sempre ajuda na recuperação de forma eficiente dessa informação.Em uma tabela pode haver apenas UMA chave primária e esse vaor não pode ser nulo. Usamos a constraint PRIMARY KEY COM O AUTO INCREMENTO, para que o banco gere os valor das chaves primarias.
+
+1) Criando uma tabela com chave primaria:
+
+- No momento da criação da tabela:
+
+CREATE TABLE {{tabela}}
+
+(ID PRIMARY KEY AUTOINCREMENT,
+...);
+
+2) Adicionando uma chave primaria a uma tabela já existente:
+
+ALTER TABLE {{tabela}}
+MODIFY COLUMN ID INT PRIMARY KEY;
+
+
+******CHAVES ESTRANGEIRAS*****
+
+É usada para estabelecer e manter a integridade dos dados entre as tabelas relacionadas. É responsavel por estabelecer uma relação entre duas tabelas. Faz a referencia para a chave primaria dessa outra tabela, que quer permitir uma relação de criação.
+
+~> Pode ser numa (NOT NULL); **registro órfão
+~> É possível ter mais deuma (ou nenhuma) em uma tabela.
+
+
+1) Criando uma tabela com chave estrangeira:
+
+CREATE TABLE {{TABELA}} (
+id, INT PRIMARY KEY,
+chave_estrangeria INT,
+
+FOREIGN KEY (chave_estrangeira) REFERENCER {{outra tabela}} (id)
+
+);
+
+
+2) Adicionando uma chave estrangeira a uma tabela já existente:
+
+ALTER TABLE {{tabela}}
+ADD CONSTRAINT {{nome_constraint}}
+FOREIGN KEY (ID_)
+REFERENCES {{outra tabela}}(ID)
+
+*vamos adicionar uma constraint, que são as responsáveis por manter a integridade referencial dos nossos dados, ela vai impedir por ex que a gente exclua um registro pai sem que os filhos sejam excluidos, ou que a gente deie esses registros orfãos.
+
+Chaves Estrangeiras - RESTRIÇÕES
+
+Existem algumas clausulas que colocamos na hora de criar uma chave estrangeira que vai causar um efeito na exclusão ou alteração desses dados:
+
+~> ON DELETE especifica o que acontece com os registros filhos quando um registro pai é excluido. ex: no on delete, podemos definir que excluindo o pai, todos os filhos serão excluidos. 
+
+~> ON UPDATE define o comportamento dos registros dependentes quando um registro pai é atualizado. Podem ser: 
+
+-CASCADE : REPLICA A ALTERAÇÃO DO PAI NOS FILHOS
+-SET NULL : REMOVE A INTEGRIDADE REFERENCIAL.
+-SET DEFAULT : UM REGISTRO DEFAULT PARA OS QUE FICARAM SEM NENHUM PAI.
+-RESTRICT
+
+1) Inserindo chaves primarias na coluna id da tabela de usuarios
+
+
+ALTER TABLE usuarios
+MODIFY COLUMN id INT AUTO_INCREMENT,
+ADD PRIMARY KEY (id)
+
+2) Inserindo chaves primarias na coluna id da tabela de destinos
+
+ALTER TABLE destinos
+MODIFY COLUMN id INT AUTO_INCREMENT,
+ADD PRIMARY KEY (id);
+
+3) Diferente das operações anteriores, na tabela de reservas vamos incluir, além da chave primaria, uma chave estrangeira, que serão as referencias para os usuarios e para os destinos:
+
+-definindo chave primaria:
+
+ALTER TABLE reservas
+MODIFY COLUMN id INT AUTO_INCRMENT,
+ADD PRIMARY KEY (id);
+
+
+-definindo chave estrangeiras:
+
+
+ALTER TABLE reservas
+ADD CONSTRAINT fk_reservas_usuarios
+FOREIGN KEY(id_usuario) REFERENCES usuarios (id);
+
+Chaves primarias e estrangerias são muito importantes pois vão garantir a consistencia entre nossos dados.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

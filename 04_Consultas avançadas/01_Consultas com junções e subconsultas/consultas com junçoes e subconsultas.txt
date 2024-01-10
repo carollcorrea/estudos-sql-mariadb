@@ -1,0 +1,122 @@
+Consultas com conjuções e subconsultas
+
+Como utilizando alguns comandos do SQL conseguimos juntar os resultados de consultas de varias tabelas para trazer uma info mais relevante para o nosso sistema.
+
+Junções: JOINs
+
+São usadas no SQL para combinar dados de duas ou mais tabelas relacionadas em uma única consulta.
+Por ex: infos de usuarios com reservas, ou as de reservas com destinos. Tipos:
+
+~> INNER JOIN
+~> LEFT JOIN ou LEFT OUTER JOIN
+~> RIGHT JOIN ou RIGHT OUTER JOIN
+~> FULL JOIN ou FULL OUTER JOIN (mariadb não aceita esse.)
+
+~> INNER JOIN
+
+Retorna apenas as linhas que têm correspondência em ambas as tabelas envolvidas na junção.Ex: se o usuário tiver reservas ele vai ser retornado na consulta. Se não tiver, não vai retornar na consulta.
+
+A junção é feita com base em uma condição de iguadade especificada na cláusula ON.
+
+SELECT *
+FROM tabela1
+INNER JOIN tabela2 ON tabela1.coluna=tabela2.coluna;
+
+É comum que o join seja feito nas colunas de primary e foregen key. Dependendo da coluna escolhida para realizar o join, isso pode afetar o sistema.
+
+SELECT * FROM usuarios us
+INNER JOIN reservas rs ON us.id = rs.id_usuario
+INNER JOIN destinos ds ON rs.id_destino = ds.id
+;
+
+buscando todas as reservas onde, na tabela de reserva os id sejam iguais ao id de usuarios da tabela de reserva.
+
+INNER JOIN destinos ds ON rs.id_destino = ds.id;
+
+Adicionando um usuário sem reservas: 
+
+INSERT INDO usuarios (nome, email, data_nascimento, rua, numero, cidade, estado) VALUES
+("sem reservas", "diogo@teste.com", "1992-05-05", "rua pinas", "12", "Ribeirão Preto", "Sao Paulo");
+
+~> LEFT JOIN
+
+Retorna todas as linhas da tabela à esquerda da junção e as linhas correspondentes da tabela à direita. Se não houver correspondência, os valores da tabela à direita serão NULL.
+
+SELECT * 
+FROM tabela1
+LEFT JOIN tabela2 ON tabela1.coluna = tabela2.coluna;
+
+~> RIGHT JOIN 
+
+Retorna todas as linhas da tabela à direita da junção e as linhas correspondentes da tabela à esquerda. Se não houver correspondência, os valores da tabela à esquerda serão NULL.
+
+SELECT *
+FROM tabela1
+RIGH JOIN tabela2 ON tabela1.coluna = tabela2.coluna;
+
+Adicionando um destino sem reserva>
+
+INSERT INTO destinos (nome, descricao) VALUES ("Destino sem reservas", "Descrição");
+
+Realizando o right join:
+
+SELECT * FROM reservas rs
+RIGHT JOIN destinos ds
+ON rs.id_destino = ds.id
+
+FULL JOIN
+
+Retorna todas as linhas de ambas as tabelas envolvidas na junção, combinando-as com base em uma condição de igualdade. Se não houver correspondência, os valores ausentes serão preenchidos com NULL.
+
+
+SELECT *
+FROM tabela1
+FULL JOIN tabela2 ON tabela1.coluna = tabela2.coluna;
+
+Caso o mariadb tivesse essa opção, em uma consulta de usuarios destinos e reservas, todas as infos seriam retornadas, deixando como NULL os dados não existentes.
+
+Sub Consultas ou consultas aninhadas
+
+Elas permitem realizar consultas mais complexas permitindo que você use o resultado de uma consulta como entrada para outra consulta.
+
+Podem ser utilizadas em várias partes de uma consulta:
+
+SELECT
+FROM
+WHERE aqui o resultado de uma consulta é usado como parâmetro.
+HAVING
+JOIN 
+
+SELECT * FROM destinos
+WHERE id NOT IN (SELECT id_destino FROM reservas);
+
+Aqui, pedimos uma busca de todos os id de destinos dentro da tabela de reservas. E pedi para me dar todos os destinos no qual o id não estivesse reserva.
+
+
+buscando usuário sem reservas:
+
+SELECT * FROM usuarios
+WHERE id NOT IN (SELECT id_usuario FROM reservas);
+
+Subconsulta na hora de retornar as infos:
+
+no momento em que consultar os usuarios trazer a quantidade de reservas que ele tem em nosso sistema.
+
+SELECT nome, (SELECT COUNT(*) from reservas WHERE id-usuario = usuarios.id) AS total_reserva FROM usuarios;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,102 @@
+CRUD:
+01_Create
+02_Read
+03_U
+04_D
+
+01 - CREATE 
+
+COMANDO: INSERT
+
+INSERT INTO
+   {{Nome-tabela}}
+   (coluna1, coluna2,...])
+
+VALUES
+ ([valor-coluna1, valor-coluna2...])
+
+INSERT INTO viagens.reservas (id, id_usuario, id_destino, data, status) VALUES (2,3,1, "2023-07-10", "confirmada");
+
+02 - READ
+
+Comando: SELECT
+
+SELECT {{lista_colunas}}
+FROM tabela;
+
+Onde* retorna todas as colunas
+
+(selecione para mim tais colunas de tais tabelas). A consulta em banco normalmente é usada com critério. Então usamos o WHERE:
+
+SELECT {{lista_colunas}}
+FROM tabela
+WHERE {{condicao}};
+
+OPERADORES LÓGICOS DE CONDIÇÃO
+
+~> = (igualdade)
+~> <> ou != (desigualdade)
+~> > (maior que)
+~> < (menos que)
+~> >= (maior ou igual que)
+~> <= (menor ou igual que)
+~> LIKE (comparação de padrões dentro de uma coluna. ex: todas as reservas com a palavra "praia")
+~> IN (pertence a uma lista de valores. ex: ver todas as reservas que estão pendentes)
+~> BETWEEN (dentro de um intervalor.ex: todas as reservas criadas na ultima semana.)
+~> AND ( E lógico)
+~> OR (ou lógico) 
+
+-- Selects --
+
+-- Selecionar todos os registros da tabela "usuarios"
+SELECT * FROM usuarios;
+
+-- Selecionar apenas o nome e o email dos usuários
+SELECT nome, email FROM usuarios;
+
+-- Selecionar os usuários que possuem o nome "João Silva"
+SELECT * FROM usuarios WHERE nome = 'João Silva';
+
+-- Selecionar os usuários que nasceram antes de uma determinada data
+SELECT * FROM usuarios WHERE data_nascimento < '1990-01-01';
+
+-- Like
+SELECT * FROM usuarios WHERE nome LIKE '%Silva%';
+SELECT * FROM usuarios WHERE nome LIKE 'Jo_o%';
+
+03 - UPDATE
+
+UPDATE {{tabela}}
+SET
+{{coluna_1}} = {{novo_valor_1}},
+{{coluna_2}} = {{novo_valor_2}}
+
+WHERE
+  {{condicao}};
+
+04 - DELETE
+
+DELETE FROM
+   {{tabela}}
+WHERE
+    {{condicao}};
+
+-- Update --
+UPDATE usuarios SET endereco = 'Nova Rua, 123' WHERE email = 'joao@example.com';
+
+UPDATE usuarios
+SET id= 4
+WHERE email = "teste@teste.com"
+
+DELETE FROM destino
+WHERE nome = "Praia do Rosa";
+
+-- Update --
+UPDATE usuarios SET endereco = 'Nova Rua, 123' WHERE email = 'joao@example.com';
+
+-- delete --
+DELETE FROM reservas WHERE status = 'cancelada';
+
+-- delete --
+DELETE FROM reservas WHERE status = 'cancelada';
+

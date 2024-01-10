@@ -1,0 +1,54 @@
+Operações CRUD: Insert e SELECT
+
+CRUD: CRUD (Create, Read, Update, Delete) é um acrônimo para as maneiras de se operar em informação armazenada. 
+É um mnemônico para as quatro operações básicas de armazenamento persistente.
+
+CRUD são as quatro operações básicas do desenvolvimento de uma aplicação, sendo utilizadas em bases de dados 
+relacionais fornecidas aos utilizadores do sistema. Outros acrônimos podem ser usados para definir as mesmas 
+operações: ABCD: Add, Browse, Change and Delete BREAD: Browse, Read, Edit, Add and Delete
+
+
+*****Comando: INSERT*****C -  stands for Create
+
+INSERT INTO
+
+     {{nome-tabela}}
+     ([coluna1, coluna2,...]) ** é possível ocultar as colunas.
+
+VALUES
+
+     {[valor-coluna1, valor-coluna2,...])
+
+*****Comando: SELECT***** -  stands for 
+
+SELECT {{lista_colunas}}
+
+FROM tabela;
+
+Onde * retorna todas as colunas.
+
+(selecione para mim tais infos e tais tabelas)
+
+A maior parte das vezes que precisarmos consultar nossa tabela de dados, será com base em um critério de seleção.
+Para isso usamos SELECT + WHERE:
+
+SELECT {{lista_colunas}}
+
+FROM tabela
+
+WHERE {{condicao}};
+
+Dentro das condições existem alguns operadores lógicos para usarmos:
+
+-> = (igualdade)
+-> <> ou != (desigualdade)
+-> > (maior que)
+-> < (manor que)
+-> >= (maior ou igual que)
+-> <= (menor ou igual que)
+-> LIKE (comparação de padrões)
+-> IN (pertence a uma lista de valores)
+-> BETWEEN (dentro de um intervalo)
+->AND e lógico
+->OR  ou lógico
+

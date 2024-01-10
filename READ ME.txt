@@ -1,0 +1,4 @@
+Esses foram os estudos de banco de dados relacionais durante o bootcamp de Ciência de Dados com Python. 
+
+
+

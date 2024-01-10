@@ -1,0 +1,93 @@
+MER e DER: Modelagem de Banco de Dados 
+
+MER - Modelo de Entidade-Relacionamento 
+
+Modelo conceitual usado pra representar estrutura geral de um banco de dados.Descreve:
+
+> Entidades
+> Atributos (informações)
+> Relacionamento entre as entidades
+
+Sem entrar em detalhes de implementação, pois isso varia de acordo com o sistema de gerenciamento de dados escolhido.
+
+É representado através de diagramas chamados Diagramas Entidade-Relacionamento (DER)
+
+Representação gráfica do modelo. Utiliza alguns símbolos e convenções para mostrar as entidades, os atributos, os
+relacionamentos e também as cardionalidades.
+
+https://app.creately.com
+
+ENTIDADE
+
+Representação das nossas tabelas. São nomeadas com substantivos concretos ou abstratos que representem de forma clara sua função dentro
+do domínio. Ex: usuários, reservas, destinos.
+
+ATRIBUTOS
+
+Os atributos são as características ou propriedades das entidades. Eles descrevem informações específicas sobre uma entidade.
+Representados por retângulos abaixo da entidade.
+Ex: usuário: nome, email, senha.
+
+RELACIONAMENTOS
+
+Os relacionamentos representam as associações entre entidades.
+Descrevem como elas se relacionam entre sim. Sempre representado como um losango. 
+Inserimos a informação daquele relacionamento. Ex: usuário REALIZA uma reserva. Uma reserva VINCULA um destino.
+É importante esse tipo de info aparecer no diagrama para quem estiver lendo tenha um entendimento claro do que aquele relaciona significa.
+
+CARDINALIDADE
+
+Refere-se à forma como as nossas entidades se relacionam umas com as outras. Indica o numero maximo de instancias ou ocorrencias
+que podemos ter de uma entidade associada a outra. Podem ser, principalmente:
+
+> Relacionamento 1..1 (um para um).
+Uma instancia de uma entidade pode estar associado a no máximo uma instancia de uma outra entidade.
+
+Ex: um usuário faz uma reserva em nosso sistema de agencia de viagens. 
+Um id de usuario está presente na entiade reserva. Uma reserva só faz sentido de estar associada com um Id de usuário.
+Então podemos dizer que a reserva tem um relacionamento de cardionalidade 1..1 para usuário. Poré, não podemos dizer que
+o usuário tem um relacionamento de 1..1 com uma reserva, já que um usuário pode ter mais de uma reserva.
+
+> Relacionamento 1..n ou 1..* (um para muitos)
+
+Uma instancia de uma entidade pode estar associada a várias outras de uma outra entidade.
+
+Ex: Em nosso exemplo, é o caso da reserva. Um usuário pode ter 1 ou muitas reservas dentro do nosso sistema.
+
+> Relacionamento n..n ou *..* (muitos para muitos)
+
+Várias instâncias de uma entidade estão relacionadas a várias instâncias de outra entidade.
+Esse tipo de cardinalidade geralmente é bem mais complexa e usa uma terceira tabela para armazenar esse tipo d relacionamento.
+
+> Além das possibilidades apresentadas, também é possível indicar cardinalidade opcional.
+Por ex, um usuário, ao se cadastras no sistema, não necessariamente vai ter uma reserva vinculada, então poderia ter a conotação
+de zero para muitos, que significa que indica qu um relacionamento não é obrigatório entre as entidades.
+
+https://app.quickdatabasediagrams.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

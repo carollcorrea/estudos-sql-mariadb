@@ -1,0 +1,73 @@
+Funções Agregadas ou agregadoras
+
+que realizam algum tipo de pre processamento ou calculo nas nossas colunas, retornando um unico valor. Ex:
+
+COUNT: Conta o número de registros.
+SUM: Soma os valores de uma coluna numérica.
+AVG: Calcula a média dos valores de uma coluna numérica.
+MIN: Retorna o valor mínimo de uma coluna.
+MAX: Retorna o valor máximo de uma coluna.
+
+Contando todos os usuarios cadastrados:
+
+SELECT COUNT (*) as total_usuarios FROM usuarios;
+
+Contando todos os usuarios que tem reserva:
+
+SELECT COUNT(*) as total_usuarios FROM usuarios us
+INNER JOIN reservas rs ON us.id = rs.id_usuario ;
+
+Usuário com maior idade:
+
+SELECT MAX(TIMESTAMPDIFF(YEAR, data_nascimento, CURRENT_DATE())) AS maior_idade
+FROM usuarios;
+
+
+Agrupamento de Resultados
+
+SELECT...
+
+FROM...
+
+WHERE...
+
+INNER....
+
+GROUP BY
+
+Vamos adicionar mais uma reserva para o usuario 1, no destino 3
+
+INSERT INTO reservas (id_usuario, id_destino) VALUES (1.3);
+
+Queremos saber quantas reservas eu tenho para o destino 3, vamos demonstrar a quantidade de reservas que temos para cada um dos destinos:
+
+SELECT COUNT(*), id FROM reservas
+GROUP BY id_destino;
+
+Ordenação de resultados
+
+Algumas vezes é importante trazer os resultados ordenados por algum critério.
+
+SELECT...
+FROM...
+INNER JOIN...
+GROUP BY...
+ORDER BY
+
+
+SELECT COUNT(*) AS qtd_reservas, id FROM reservas
+GROUP BY id_destino
+ORDER BY qtd_reservas DESC
+;
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+TABELAS
+
+Usadas para armazenar dados de forma organizada. Cada tabela em um banco de dados relacional tem um nome únicao e é 
+dividida em colunas e linhas.
+
+(representação conceitual)
+
+COLUNA
+
+Uma coluna é uma estrutura dentro de uma tablea que representa um **atributo específico** dos dados armazenados.
+Cada coluna tem um nome único e um tipo de dado associado que define o tipo de informação que pode ser armazenado nela, como
+números, textos, datas, etc...
+
+REGISTRO
+
+Um registro, também conhecido como linha ou tupla, é uma instância individual de dados em uma tabela.
+
+
+*****COMANDO CREATE TABLE*****
+
+CREATE TABLE {{nome}}
+ 
+   ({{coluna}} {{tipo}} {{opções}} COMMENT
+{{'COMENTARIO'}});
+
+*É muito importante criar comentários !!
+
+TIPOS DE DADOS
+
+Os dados podem variar muito entre os diversos SGBD, os mais comuns são:
+
+- Inteiro (Integer). Podem ser positivos ou negativos.
+- Decimal/Numérico (Decimal/Numeric). Para representações financeiros.
+- Caractere/Varchar (Character/Varchar) string - textos pequenos.
+- Data/Hora (Date/Time). Permite formatos de data/hora.
+- Booleano (Boolean). True e False.
+- Texto Longo (text)
+
+OPÇÕES
+
+> Restrições de valor: dizer se uma coluna é obrigatória ou não.
+- NOT NULL - que não esteja vazio
+- UNIQUE - que seja unico
+- DEFAULT - automático na criação
+
+>Chaves Primárias estrangeiras
+
+>Auto Incremento do valor do ID do usuário ou qualquer tipo de info auto inrmental.
+

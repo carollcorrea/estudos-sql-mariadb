@@ -1,0 +1,46 @@
+O que é um banco de dados?
+
+São estruturados
+sistema de consulta
+facil acesso à informação
+
+Tipos de banco de dados informatizados
+
+> Relacionais/SQL 
+> Não Relacionais/NoSQL(Not OnlySQL)
+> Orientado a objetos
+> Hierárquico
+
+SGBD
+
+Sistema de gerenciamento de banco de dados
+oferecem ferramentas e recursos para criação, consulta e administrar os bancos de dados.
+Ex: PostgreSQL, MYSQL, SQLite, MariaDB, mongoDB...
+
+Funcionalidades básicas: CRUD
+Create
+Read
+Update
+Delete
+
+Características de um sistema de banco de dados relacional
+
+> Relacionamento entre tabelas (informações relacionadas entre si para que possam compor uma info mais relevante para o sistema.)
+
+> Linguagem de Consulta Estruturada (SQL)
+> Integridade Referencial de informação para evitar dados orfãos(atrelado ao relacionamento entre tabelas)
+> Normalização de dados (forma que estruturamos a coluna para que elas seja unica para o sistema)
+> Segurança (árvore de acesso)
+> Flexibilidade extensibilidade 
+> Suporte a transações ACID:
+
+Conjunto de propriedades de um banco de dados relacional que garante que as operações sejam executadas de forma segura e confiável para que as infos sejam cosistentes.
+
+> Atomicidade: garante que todas as operações sejam executadas com sucesso ou que nenhuma delas seja executada.Se uma das operações falhar, as demais são revertidas ao estado anterior.
+> Consistencia : garante que o banco de dados saia de um estado cosistentes para outro estado consistente, garantindo todas as regras e restrições definidas nas tabelas.
+> Isolamento: Cada trasnsação é executada de forma isolada, sem interferir nas transações concorrentes. Para evitar acesso incorreto ou inconsistência de dados.
+> Durabilidade: uma vez que essa transação é confirmada, a alteração de informações é permanente. 
+
+www.oracle.com/br/database/what-is-a-relational-database/
+
+

@@ -1,0 +1,57 @@
+indices de busca
+
+Estruturas de dados que aceleram as pesquisas e recuperação de infos nos nossos BDs podem ser criados em uma ou varias colunas e apermitem um cesso mais rápido a esses dados.
+
+Hoje em dia deixar uma tabela sem indice de busca que é frequentemente consultada pode onerar muito a infra do banco de dados. Então ao modelas os bancos de dados é importante já pensar nisso.
+
+Perfomance no ambiente produtivo. 
+
+Analise das querys para saber quantas linhas o banco está lendo até encontrar o nosso resultado, e também saber se ele está utilizando um índice ou não para a nossa consulta.
+
+Analise do Plano de Execução
+
+Ela nos permite examinar as operações realizadas, as tabelas acessadas, os índices utilizados e outras informações importantes para identificar possíveis moelhorias de desempenho.
+
+EXPLAIN
+
+  SELECT *
+  FROM {{tabela}}
+
+Retorna os dados da analise da execução da querry.
+
+Análise do Plano de Execução
+
+~> select_type: "SIMPLE", "SUBQUERY", "JOIN"
+~> table.
+~> type: "ALL", "INDEX" entre outros
+~> possible_keys: Os ínices possíveis que podem ser utilizados na operação.
+~> key: O índice utilizado na operação, se aplicaével.
+~> key_len: O comprimento do índice utilizado.
+~> ref: As colunas ou constantes usadas para acessar o índice.
+~> rows - quantas linhas o meu banco precisou processar para achar o resultado. Se a busca executou todas as linhas daquele tabela, significa que ela provavelmente está precisando de um índice.Funscã.
+
+massa: quantidade de dados da tabela.
+
+Pesquisando todos os usuarios com email "joao.silva@example.com"
+
+EXPLAIN
+   SELECT * FROM usuarios WHERE email = "joao.silva@example.com"
+
+~> Nesse caso a busca é executada apenas em uma linha, pois temos a chave UNIQUE nesse campo, o que por si só já é um indice.
+
+Agora, vamos executar esse comando no campo nome, que não é UNIQUE:
+
+EXPLAIN 
+    SELECT (*) FROM usuarios WHERE nome = "João Silva";
+
+execução em 34 linhas.
+
+Vamos criar um indice nessa nossa coluna:
+
+CREATE INDEX idx_nome ON usuarios (nome);
+
+Índices de busca
+
+CREATE INDEX {{nome_index}}
+ON {{tabela}} ({{coluna1, coluna2...}});
+

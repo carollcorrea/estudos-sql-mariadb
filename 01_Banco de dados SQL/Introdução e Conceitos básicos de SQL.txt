@@ -1,0 +1,41 @@
+Introdução e Conceitos Básicos de SQL
+
+Structured
+Query
+Language
+
+é um linguagem de consulta padronizada, amplamente utilizada para inetragir com o banco de dados.
+permite que nós devs escevaqmos consultas e comandos para criar esquemas, recuperar e inserir infos, atualizar e até mesmo realizar a exclusão de infos ou do banco de dados em si.
+
+Organização da SQL
+
+Tipos de consulta de dados:
+
+(Principais)
+
+> DQL - Linguagem de Consulta de Dados. Recuperar info que foi armazenada anteriormente.
+   SELECT;
+
+> DML - Linguagem de Manipulação de Dados. Manipulação de dados para consulta, alteração e exclusão de info anteriormente armazenada.
+   INSERT, UPDATE E DELETE;
+
+> DDL - Linguagem de Definição de Dados. Estruturação de dados e tabelas.
+   CREATE, ALTER, DROP;
+
+(demais)
+
+> DCL - Linguagem de Controle de Dados. Permissionamento de usuários para manipulação do banco e dos dados.
+   GRANT, REVOKE
+
+> DTL - Linguagem de Transação de Dados. Garante a execução das propriedades. 
+   BEGIN, início das operações
+   COMMIT, salvar as alterações realizadas
+   ROLLBACK, comando que volta o banco de dados ao seu estado anterior caso haja algum erro nas operações.
+
+Sintaxe básica: nomenclatura
+
+> Os nomes devem começar com uma letra ou com um caractere de sublinhado (_)
+> Os nomes podem conter letras, números e caracteres de sublinhado (_)
+> Sensibiliade a maiúsculas e minúsculas.
+
+www.sqltutorial.org
